@@ -82,6 +82,7 @@ begin
   Self.FUseHttps := False;
   Self.FHost := '127.0.0.1';
   Self.FPort := 3400;
+  Self.FTimeoutMS := 3000;
 end;
 
 function TQuickChartAPI.CreateRestRequest(const Resource: string): TRESTRequest;
