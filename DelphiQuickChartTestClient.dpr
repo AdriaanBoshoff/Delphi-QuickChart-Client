@@ -3,7 +3,8 @@ program DelphiQuickChartTestClient;
 uses
   System.StartUpCopy,
   FMX.Forms,
-  ufrmMain in 'ufrmMain.pas' {Form1};
+  ufrmMain in 'ufrmMain.pas' {Form1},
+  QuickChart in 'QuickChart.pas';
 
 {$R *.res}
 
