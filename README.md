@@ -3,7 +3,7 @@ Delphi Library to access the [QuickChart.io](https://quickchart.io/) API. Self h
 
 ## Provided Methods
 ```pascal
-function HealthCheck: TQCHleathCheck;
+function HealthCheck: TQCHealthCheck;
 function GenerateChart(const Params: TQCChartParams; const SendConfigAsString: Boolean = False): TBitmap;
 ```
 
@@ -25,6 +25,11 @@ begin
 
       qc.Host := edtHost.Text;
       qc.Port := Round(nmbrbxPort.Value);
+
+      // To use the quickchart.io public API configure as follows:
+      // qc.UseHttps := True;
+      // qc.Host := 'quickchart.io';
+      // qc.Port := 443;
 
       var healthResult := qc.HealthCheck;
       LogHealthCheck('Success: ' + BoolToStr(healthResult.Success, True));
@@ -57,6 +62,12 @@ begin
 
     qc.Host := edtHost.Text;
     qc.Port := Round(nmbrbxPort.Value);
+
+    // To use the quickchart.io public API configure as follows:
+    // qc.UseHttps := True;
+    // qc.Host := 'quickchart.io';
+    // qc.Port := 443;
+    // chartParams.Key := '<YOUR API KEY HERE IF NEEDED>';
 
     // Loads default params and config from quickchart.
     // Modify as needed Example: "chartParams.Format := 'svg';"
