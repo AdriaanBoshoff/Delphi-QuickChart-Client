@@ -61,6 +61,8 @@ begin
     // Loads default params and config from quickchart.
     // Modify as needed Example: "chartParams.Format := 'svg';"
     var chartParams := TQCChartParams.CreateDefaults;
+    chartParams.Width := Trunc(imgChartOutput.Width);
+    chartParams.Height := Trunc(imgChartOutput.Height);
     imgChartOutput.Bitmap := qc.GenerateChart(chartParams, false);
   finally
     qc.Free;
