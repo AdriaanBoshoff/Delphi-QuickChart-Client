@@ -79,9 +79,9 @@ begin
   inherited;
 
   // Defaults
-  Self.FUseHttps := False;
-  Self.FHost := '127.0.0.1';
-  Self.FPort := 3400;
+  Self.FUseHttps := True;
+  Self.FHost := 'quickchart.io';
+  Self.FPort := 443;
   Self.FTimeoutMS := 3000;
 end;
 
