@@ -11,11 +11,11 @@ FMX.Graphics,
 Rest.Client, Rest.Types, System.SysUtils, System.Classes;
 
 type
-  TQCHleathCheck = record
+  TQCHealthCheck = record
   public
     Success: Boolean;
     Version: string;
-    class function CreateDefaults: TQCHleathCheck; static;
+    class function CreateDefaults: TQCHealthCheck; static;
   end;
 
 type
@@ -63,7 +63,7 @@ type
     constructor Create;
 
     // API Methods
-    function HealthCheck: TQCHleathCheck;
+    function HealthCheck: TQCHealthCheck;
     function GenerateChart(const Params: TQCChartParams; const SendConfigAsString: Boolean = False): TBitmap;
   end;
 
@@ -168,7 +168,7 @@ begin
   end;
 end;
 
-function TQuickChartAPI.HealthCheck: TQCHleathCheck;
+function TQuickChartAPI.HealthCheck: TQCHealthCheck;
 begin
   var rest := Self.CreateRestRequest('/healthcheck');
   try
@@ -189,7 +189,7 @@ end;
 
 { TQCHleathCheck }
 
-class function TQCHleathCheck.CreateDefaults: TQCHleathCheck;
+class function TQCHealthCheck.CreateDefaults: TQCHealthCheck;
 begin
   Result.Success := False;
   Result.Version := '';
