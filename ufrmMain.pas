@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, Web.HTTPApp,
   FMX.TabControl, FMX.Controls.Presentation, FMX.StdCtrls, FMX.ListBox, FMX.Edit,
   FMX.EditBox, FMX.NumberBox, FMX.Memo.Types, FMX.Layouts, FMX.ScrollBox,
-  FMX.Memo;
+  FMX.Memo, FMX.Objects;
 
 type
   TForm1 = class(TForm)
@@ -20,6 +20,12 @@ type
     mmoHealthCheck: TMemo;
     lytHealthCheckControls: TLayout;
     btnRunHealthCheck: TButton;
+    tbtmChart: TTabItem;
+    lytChartControls: TLayout;
+    btnGenerateChart: TButton;
+    grpChartOutput: TGroupBox;
+    imgChartOutput: TImage;
+    procedure btnGenerateChartClick(Sender: TObject);
     procedure btnRunHealthCheckClick(Sender: TObject);
   private
     { Private declarations }
@@ -37,6 +43,27 @@ uses
   QuickChart;
 
 {$R *.fmx}
+
+procedure TForm1.btnGenerateChartClick(Sender: TObject);
+begin
+  var qc := TQuickChartAPI.Create;
+  try
+    case cbbSSL.ItemIndex of
+      0: // http
+        qc.UseHttps := False;
+      1: // https
+        qc.UseHttps := True;
+    end;
+
+    qc.Host := edtHost.Text;
+    qc.Port := Round(nmbrbxPort.Value);
+
+    var chartParams := TQCChartParams.CreateDefaults;
+    imgChartOutput.Bitmap := qc.GenerateChart(chartParams, false);
+  finally
+    qc.Free;
+  end;
+end;
 
 procedure TForm1.btnRunHealthCheckClick(Sender: TObject);
 begin
