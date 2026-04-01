@@ -107,7 +107,7 @@ end;
 
 function TQuickChartAPI.GenerateChart(const Params: TQCChartParams; const SendConfigAsString: Boolean): TBitmap;
 begin
-  var rest := Self.CreateRestRequest('/chart');  // Fix #1: correct endpoint
+  var rest := Self.CreateRestRequest('/chart');
   try
     rest.Method := TRESTRequestMethod.rmPOST;
 
@@ -135,7 +135,6 @@ begin
           raise Exception.Create('[TQuickChartAPI.GenerateChart] Chart config is not valid JSON!');
       end;
 
-      // Fix #2: add body as a JSON string with explicit content type
       rest.AddBody(jData.ToJSON, TRESTContentType.ctAPPLICATION_JSON);
     finally
       jData.Free;
@@ -146,7 +145,6 @@ begin
     if rest.Response.StatusCode <> 200 then
       raise Exception.Create('[TQuickChartAPI.GenerateChart] Status Code: ' + rest.Response.StatusCode.ToString + sLineBreak + 'Content: ' + rest.Response.Content);
 
-    // Fix #3: use TBytesStream and reset position before loading
     Result := TBitmap.Create;
     try
       var memStream := TBytesStream.Create(rest.Response.RawBytes);
@@ -207,22 +205,7 @@ begin
   Result.BackgroundColor := 'transparent';
   Result.Version := '2';
   Result.Key := '';
-  Result.ChartConfig :=  '{' +
-      '"type": "bar",' +
-      '"data": {' +
-        '"labels": ["Q1", "Q2", "Q3", "Q4"],' +
-        '"datasets": [{' +
-          '"label": "Users",' +
-          '"data": [50, 60, 70, 180]' +
-        '}]' +
-      '},' +
-      '"options": {' +
-        '"title": {' +
-          '"display": true,' +
-          '"text": "Basic chart title"' +
-        '}' +
-      '}' +
-    '}';
+  Result.ChartConfig := '{' + '"type": "bar",' + '"data": {' + '"labels": ["Q1", "Q2", "Q3", "Q4"],' + '"datasets": [{' + '"label": "Users",' + '"data": [50, 60, 70, 180]' + '}]' + '},' + '"options": {' + '"title": {' + '"display": true,' + '"text": "Basic chart title"' + '}' + '}' + '}';
 end;
 
 end.
