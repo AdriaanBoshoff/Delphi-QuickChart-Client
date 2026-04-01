@@ -58,6 +58,8 @@ begin
     qc.Host := edtHost.Text;
     qc.Port := Round(nmbrbxPort.Value);
 
+    // Loads default params and config from quickchart.
+    // Modify as needed Example: "chartParams.Format := 'svg';"
     var chartParams := TQCChartParams.CreateDefaults;
     imgChartOutput.Bitmap := qc.GenerateChart(chartParams, false);
   finally
