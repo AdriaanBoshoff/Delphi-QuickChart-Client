@@ -21,7 +21,7 @@ object Form1: TForm1
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Align = Left
       TabOrder = 0
-      Text = '127.0.0.1'
+      Text = '192.168.229.135'
       Position.X = 73.000000000000000000
       Position.Y = 8.000000000000000000
       Margins.Left = 8.000000000000000000
@@ -50,7 +50,7 @@ object Form1: TForm1
       Cursor = crIBeam
       Min = 1.000000000000000000
       Max = 999999.000000000000000000
-      Value = 4300.000000000000000000
+      Value = 3400.000000000000000000
       Position.X = 249.000000000000000000
       Position.Y = 8.000000000000000000
       Margins.Left = 8.000000000000000000
@@ -88,6 +88,7 @@ object Form1: TForm1
       object mmoHealthCheck: TMemo
         Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
         DataDetectorTypes = []
+        ReadOnly = True
         Align = Client
         Margins.Top = 10.000000000000000000
         Size.Width = 620.000000000000000000
