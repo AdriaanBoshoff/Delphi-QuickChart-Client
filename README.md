@@ -1,5 +1,5 @@
 # Delphi-QuickChart-Client
-Delphi Library to access quickchart
+Delphi Library to access the [QuickChart.io](https://quickchart.io/) API. Self hosted or `https://quickchart.io/`
 
 ## Provided Methods
 ```pascal
